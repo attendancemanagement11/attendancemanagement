@@ -1,0 +1,30 @@
+
+body{
+    background-color: #fafdfb !important;
+}
+
+.modal-social{
+    /* background-color: red !important; */
+    z-index: 2000;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+}
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide-in {
+    animation: slideInFromRight 1s ease-in-out;
+  }
+  
+  
