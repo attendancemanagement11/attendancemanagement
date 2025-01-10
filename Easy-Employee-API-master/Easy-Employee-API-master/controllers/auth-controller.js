@@ -36,11 +36,17 @@ class AuthController {
         await tokenService.storeRefreshToken(_id,refreshToken);
         res.cookie('accessToken',accessToken,{
             maxAge:1000*60*60*24*30,
-            httpOnly:true
+            httpOnly:true,
+            secure: true,
+    sameSite: 'None',
+    domain: '.expsolutions.net',
         });
         res.cookie('refreshToken',refreshToken,{
             maxAge:1000*60*60*24*30,
-            httpOnly:true
+            httpOnly:true,
+            secure: true,
+    sameSite: 'None',
+    domain: '.expsolutions.net',
         })
         res.json({success:true,message:'Login Successfull',user:new UserDto(user)})
     }

@@ -21,14 +21,22 @@ console.log(CLIENT_URL);
 
 //Cors Option
 const corsOption = {
-    credentials:true,
-    origin:['https://employee.expsolutions.net','http://localhost:3001','http://192.168.29.11:3001']
-}
+    credentials: true,
+    origin: [
+        'https://employee.expsolutions.net',
+        'http://localhost:3001',
+        'http://192.168.29.11:3001'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie']
+};
+app.use(cors(corsOption));
+
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 //Configuration
-app.use(cors(corsOption));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
