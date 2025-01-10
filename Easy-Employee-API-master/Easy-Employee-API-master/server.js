@@ -23,7 +23,7 @@ console.log(CLIENT_URL);
 //Cors Option
 const corsOption = {
     credentials:true,
-    origin:['http://localhost:3002','http://192.168.24.89:3002','https://employee.expsolutions.net', CLIENT_URL]
+    origin:['https://employee.expsolutions.net', CLIENT_URL]
 }
 
 //Configuration
