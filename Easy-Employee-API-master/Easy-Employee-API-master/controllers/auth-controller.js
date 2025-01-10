@@ -36,13 +36,11 @@ class AuthController {
         await tokenService.storeRefreshToken(_id,refreshToken);
         res.cookie('accessToken',accessToken,{
             maxAge:1000*60*60*24*30,
-            // httpOnly:true,
-            secure:true
+            httpOnly:true
         });
         res.cookie('refreshToken',refreshToken,{
             maxAge:1000*60*60*24*30,
-            // httpOnly:true,
-            secure:true
+            httpOnly:true
         })
         res.json({success:true,message:'Login Successfull',user:new UserDto(user)})
     }
@@ -91,9 +89,7 @@ class AuthController {
 
     refresh = async (req,res,next) =>
     {
-        console.log('req.ffffff',req.cookies)
         const {refreshToken:refreshTokenFromCookie} = req.cookies;
-        console.log('hahahahahhahahaha',refreshTokenFromCookie,req.cookies);
         if(!refreshTokenFromCookie) return next(ErrorHandler.unAuthorized());
         const userData = await tokenService.verifyRefreshToken(refreshTokenFromCookie);
         const {_id,email,username,type} = userData;
@@ -114,18 +110,14 @@ class AuthController {
         }
         const {accessToken,refreshToken} = tokenService.generateToken(payload);
         await tokenService.updateRefreshToken(_id,refreshTokenFromCookie,refreshToken);
-        res.cookie('accessToken', accessToken, {
-            maxAge: 1000 * 60 * 60 * 24 * 30,
-            httpOnly: true,
-            secure: true,  // Ensure this flag is set for HTTPS
-        });
-        
-        res.cookie('refreshToken', refreshToken, {
-            maxAge: 1000 * 60 * 60 * 24 * 30,
-            httpOnly: true,
-            secure: true,  // Ensure this flag is set for HTTPS
-        });
-        
+        res.cookie('accessToken',accessToken,{
+            maxAge:1000*60*60*24*30,
+            httpOnly:true
+        })
+        res.cookie('refreshToken',refreshToken,{
+            maxAge:1000*60*60*24*30,
+            httpOnly:true
+        })
         res.json({success:true,message:'Secure access has been granted',user:new UserDto(user)})
     }
 

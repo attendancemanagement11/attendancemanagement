@@ -22,7 +22,7 @@ console.log(CLIENT_URL);
 //Cors Option
 const corsOption = {
     credentials:true,
-    origin:['https://employee.expsolutions.net',]
+    origin:['https://employee.expsolutions.net','http://localhost:3001','http://192.168.29.11:3001']
 }
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());

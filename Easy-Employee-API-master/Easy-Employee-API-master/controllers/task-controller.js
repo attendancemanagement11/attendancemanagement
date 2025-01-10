@@ -200,6 +200,7 @@ getTasksForUser = async (req, res, next) => {
     try {
       const { _id } = req.user; // Assuming `req.user` contains the logged-in user info
       console.log(req.user)
+      console.log('hey',req.cookies)
       const tasks = await taskModel.find({ assignedTo: _id });
       res.json({ success: true, tasks });
     } catch (error) {
