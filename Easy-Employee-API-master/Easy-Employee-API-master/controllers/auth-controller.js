@@ -91,11 +91,13 @@ class AuthController {
 
     refresh = async (req,res,next) =>
     {
-        console.log('hahahahahhahahaha',refreshToken,req.cookies);
-        if(!refreshToken) return next(ErrorHandler.unAuthorized());
-        const userData = await tokenService.verifyRefreshToken(refreshToken);
+        console.log('req.ffffff',req.cookies)
+        const {refreshToken:refreshTokenFromCookie} = req.cookies;
+        console.log('hahahahahhahahaha',refreshTokenFromCookie,req.cookies);
+        if(!refreshTokenFromCookie) return next(ErrorHandler.unAuthorized());
+        const userData = await tokenService.verifyRefreshToken(refreshTokenFromCookie);
         const {_id,email,username,type} = userData;
-        const token = await tokenService.findRefreshToken(_id,refreshToken);
+        const token = await tokenService.findRefreshToken(_id,refreshTokenFromCookie);
         if(!token)
         {
             res.clearCookie('refreshToken');
