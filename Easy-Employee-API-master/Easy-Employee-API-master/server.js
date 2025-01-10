@@ -25,12 +25,14 @@ const corsOption = {
     credentials:true,
     origin:['https://employee.expsolutions.net', CLIENT_URL]
 }
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 //Configuration
 app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
+
 
 // Routes
 app.use('/api/auth',authRoute);
