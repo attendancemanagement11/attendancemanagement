@@ -1,6 +1,6 @@
 const transport = require('../configs/mail-config');
 const mailTemplate = require('../templates/mail-template');
-const smtpAuthUser = process.env.SMTP_AUTH_USER || 'socialcodia@gmail.com';
+const smtpAuthUser = process.env.SMTP_AUTH_USER || 'uccbibhu12321@gmail.com';
 
 class MailService{
 
@@ -14,13 +14,14 @@ class MailService{
 
     sendMail  = async (to,subject,text) =>
     {
+        
         const mailOption = {
             from:smtpAuthUser,
             to,
             subject,
-            text
+            text,
         }
-
+        console.log('Mail Service',mailOption);
         await transport.sendMail(mailOption,(err,info)=>
         {
             console.log(err);

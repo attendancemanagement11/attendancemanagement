@@ -24,8 +24,8 @@ const corsOption = {
     credentials: true,
     origin: [
         'https://employee.expsolutions.net',
-        'http://localhost:3001',
-        'http://192.168.29.11:3001'
+        'http://localhost:3000',
+        'http://192.168.29.11:3000'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie']

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const teamService = require('../services/team-service');
 const attendanceService = require('../services/attendance-service');
-
+const MailService = require('../services/mail-service');
 
 class UserController {
 
@@ -29,7 +29,13 @@ class UserController {
         const user = {
             name,email,username,mobile,password,type,address,image:file.filename
         }
-
+         await MailService.sendMail(
+            email, // list of receivers
+            "Hello ✔", // Subject line
+            `Hello ${name},\n\nYour account has been successfully created. Your email is: ${email}\nYour temporary password is: ${password}\n\nPlease change your password after logging in.\n\nThank you for joining us!\n\nBest regards,\nTeam`, // plain text body
+          );
+        //   await transporter.send(info);
+          console.log(`Welcome email sent to ${email} with password`);
         
         // console.log("Hello! I am here in create user");
         // console.log(user)
